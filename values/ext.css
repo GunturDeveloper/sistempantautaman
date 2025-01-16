@@ -1,0 +1,136 @@
+body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #333;
+            
+        }
+        .header {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            position: fixed;
+            padding: 10px 20px;
+            background-color: white;
+            border-bottom: solid 3px #f3f3f3;
+        }
+        .header .menu-icon, .header .search-icon {
+            font-size: 24px;
+            color: #333;
+        }
+        .header .logo {
+            font-size: 24px;
+            color: #333;
+            margin-left: 1%;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content .section {
+            margin-top: 40px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: solid 3px #f3f3f3;
+        }
+        .content .section h1 {
+            font-size: 36px;
+            margin: 0 0 10px 0;
+        }
+        .content .section p {
+            font-size: 16px;
+            margin: 0 0 20px 0;
+        }
+        .content .section .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: white;
+            color: #333;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.5s;
+        }
+        .content .section .button:hover {
+            background: #f3f3f3;
+        }
+        .content .image-section {
+            background-color: #87ceeb;
+            border-radius: 10px;
+            height: 200px;
+            position: relative;
+        }
+        .content .image-section img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+        .content .image-section .play-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #5c3c92;
+            border-radius: 50%;
+            padding: 10px;
+            color: #ffffff;
+            font-size: 24px;
+        }
+        .content .news-section {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .content .news-section h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .dialog {
+    display: none; /* Awalnya tersembunyi */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0; /* Untuk animasi fade-in/fade-out */
+    transition: opacity 0.3s ease; /* Transisi opacity */
+}
+
+.dialog.show {
+    display: flex; /* Tampilkan dialog */
+    opacity: 1; /* Transisi ke terlihat */
+}
+
+.dialog-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #333;
+    width: 80%;
+    border: solid 3px #f3f3f3;
+    transform: scale(0.8); /* Mulai kecil */
+    transition: transform 0.3s ease; /* Transisi scale */
+}
+
+.dialog.show .dialog-content {
+    transform: scale(1); /* Membesar ke ukuran normal */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 32px;
+    color: #333;
+    background-color: transparent;
+    border: none;
+}
