@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="Aplikasi monitoring sensor yang menampilkan data pH, TDS, Suhu, dan Kelembapan.">
+    <meta name="author" content="Tim Robotik SMK-SMTI YOGYAKARTA VOCATIONAL HIGH SCHOOL">
+    <meta name="keywords" content="Monitoring Sensor, pH, TDS, Suhu, Kelembapan, Aplikasi Web">
+    <link rel="stylesheet" href="./values/ext.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <title>Sistem Pemantauan Taman Digital</title>
+</head>
+<body>
+    
+    <div class="header">
+   <i class="fas fa-bars menu-icon">
+   </i>
+   <div class="logo">
+    Sipetal
+   </div>
+   <p></p>
+  </div>
+  <div class="content">
+   <div class="section">
+    <h1>
+     Sistem Pemantauan Taman Digital
+    </h1>
+    <p>
+     Sistem Pemantauan Taman Digital adalah sebuah aplikasi website untuk melakukan pemantauan pada sensor IoT di taman sekolah.
+    </p>
+    <a class="button" href="dashboard.html">
+     Lakukan Pemantauan
+    </a>
+   </div>
+   
+     <div class="section">
+    <h1>
+     Mengenal MetanaJs
+    </h1>
+    <p>
+     MetanaJs adalah framework buatan GunturDeveloper untuk memudahkan direksi halaman website seperti sistem Single Page Action dengan struktur programatik seperti aplikasi Android.
+    </p>
+    <a class="button" href="sumber.html">
+     Lihat Kode Sumber 
+    </a>
+   </div>
+       <div id="dialog" class="dialog">
+    <div class="dialog-content">
+        <span class="close-button">&times;</span>
+        <h2>Tentang Kami</h2>
+        <p>Web Programmer : Guntur Khoidir P</p>
+        <p>Microcontroller Programmer : Adhyaksa Perwira Yudha</p>
+    </div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuIcon = document.querySelector(".menu-icon");
+        const dialog = document.getElementById("dialog");
+        const closeButton = document.querySelector(".close-button");
+
+        menuIcon.addEventListener("click", () => {
+            dialog.style.display = "flex"; // Pastikan dialog ditampilkan
+            setTimeout(() => {
+                dialog.classList.add("show"); // Tambahkan animasi setelah dialog terlihat
+            }, 10); // Sedikit jeda untuk memastikan transisi berjalan
+        });
+
+        closeButton.addEventListener("click", () => {
+            dialog.classList.remove("show"); // Hapus animasi
+            setTimeout(() => {
+                dialog.style.display = "none"; // Sembunyikan dialog setelah animasi selesai
+            }, 300); // Durasi sesuai transisi CSS (0.3s)
+        });
+
+        dialog.addEventListener("click", (e) => {
+            if (e.target === dialog) {
+                dialog.classList.remove("show"); // Hapus animasi
+                setTimeout(() => {
+                    dialog.style.display = "none"; // Sembunyikan dialog
+                }, 300);
+            }
+        });
+    });
+</script>
+</body>
+</html>

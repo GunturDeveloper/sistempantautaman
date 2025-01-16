@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="in">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Aplikasi monitoring sensor yang menampilkan data pH, TDS, Suhu, dan Kelembapan.">
+    <meta name="author" content="Tim Robotik SMK-SMTI YOGYAKARTA VOCATIONAL HIGH SCHOOL">
+    <meta name="keywords" content="Monitoring Sensor, pH, TDS, Suhu, Kelembapan, Aplikasi Web">
+    <link rel="stylesheet" href="./values/ext.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <title>Sistem Pemantauan Taman Digital</title>
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-bars menu-icon"></i>
+        <div class="logo">Sipetal</div>
+    </div>
+    <div class="content">
+        <div class="section">
+            <h1>Pemantauan pH</h1>
+            <p>Nilai pH: <span id="ph-value">0.0</span></p>
+        </div>
+        <div class="section">
+            <h1>Pemantauan TDS</h1>
+            <p>Nilai TDS: <span id="tds-value">0</span> ppm</p>
+        </div>
+        <div class="section">
+            <h1>Pemantauan Suhu</h1>
+            <p>Nilai Suhu: <span id="suhu-value">0</span>°C</p>
+        </div>
+        <div class="section">
+            <h1>Pemantauan Kelembapan</h1>
+            <p>Nilai Kelembapan: <span id="kelembapan-value">0</span>%</p>
+        </div>
+        <div id="dialog" class="dialog">
+            <div class="dialog-content">
+                <span class="close-button">&times;</span>
+                <h2>Tentang Kami</h2>
+                <p>Web Programmer: Guntur Khoidir P</p>
+                <p>Microcontroller Programmer: Adhyaksa Perwira Yudha</p>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDPayaIDWjWgS2RtOFV4boipvD-FTJhfXc",
+            authDomain: "iotsmti.firebaseapp.com",
+            projectId: "iotsmti",
+            storageBucket: "iotsmti.firebasestorage.app",
+            messagingSenderId: "503528492787",
+            appId: "1:503528492787:web:8c3df02876abf7b46a7186",
+            measurementId: "G-DBB5JZY7EP"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Reference to the document
+        const docRef = db.collection("data").doc("sensor");
+
+        // Update values dynamically
+        docRef.onSnapshot((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                document.getElementById("ph-value").textContent = data.pH || "0.0";
+                document.getElementById("tds-value").textContent = data.TDS || "0";
+                document.getElementById("suhu-value").textContent = data.suhu || "0";
+                document.getElementById("kelembapan-value").textContent = data.kelembapan || "0";
+            } else {
+                console.error("Dokumen sensor tidak ditemukan!");
+            }
+        });
+
+        // Dialog handling
+        document.addEventListener("DOMContentLoaded", () => {
+            const menuIcon = document.querySelector(".menu-icon");
+            const dialog = document.getElementById("dialog");
+            const closeButton = document.querySelector(".close-button");
+
+            menuIcon.addEventListener("click", () => {
+                dialog.style.display = "flex";
+                setTimeout(() => dialog.classList.add("show"), 10);
+            });
+
+            closeButton.addEventListener("click", () => {
+                dialog.classList.remove("show");
+                setTimeout(() => (dialog.style.display = "none"), 300);
+            });
+
+            dialog.addEventListener("click", (e) => {
+                if (e.target === dialog) {
+                    dialog.classList.remove("show");
+                    setTimeout(() => (dialog.style.display = "none"), 300);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
